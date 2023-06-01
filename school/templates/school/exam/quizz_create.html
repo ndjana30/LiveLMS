@@ -1,0 +1,132 @@
+{% extends 'school/base.html' %}
+{% block content %}
+
+
+<h2 class="is-size-4 mt-4 mb-4 has-text-centered"> QUIZS</h2>
+<ol type="1">
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                
+{% for q in qz %}
+
+
+
+<div class="column is-4">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="" alt="Placeholder image">
+                        </figure>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <a href="{% url 'add_question' q.pk %}"><p class="is-size-5">Quiz: {{ q.name }} </p></a>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <p> Course name:{{ q.course }}</p>
+                            <p> Created On:{{ q.created }}</p>
+                            <p> {{ q.questions.count }} question(s)</p>
+                             
+                        </div>
+                        
+                    </div>
+                </div>
+ </div>
+
+{% empty %}
+<p> no quiz yet</p>
+
+
+
+{% endfor %}
+</div>
+</div>
+</section>
+
+</ol>
+
+    <form id="quiz" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="">Quiz name</label>
+        <div class="control">
+            <input class="input" type="text" Required name="name" >
+        </div>
+    <div class="field">
+        
+    </div>
+     <div class="field">
+        <label for="">Course</label>
+        <div class="control">
+            <input class="input" type="text" Required name="course" value="{{quiz.course}}" readonly >
+        </div>
+    </div>
+    </form> 
+
+<div class="field">
+    <div class="control">
+        <button form="quiz" class="button is-dark">Create Quiz</button>
+    </div>
+</div> 
+
+
+
+{% comment %} 
+{% if quiz %}
+<form id="question" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="">question</label>
+        <div class="control">
+            <input class="input" type="text" Required name="sentence" >
+        </div>
+    <div class="field">
+        
+    </div>
+     <div class="field">
+        <label for="">Quiz</label>
+        <div class="control">
+            <input class="input" type="text" Required name="quiz" value="{{question.quiz}}" readonly >
+        </div>
+    </div>
+    <div class="field">
+        <label for="">option A</label>
+        <div class="control">
+            <input class="input" type="text" Required name="a" value="{{question.a}}">
+        </div>
+    </div>
+    <div class="field">
+        <label for="">option B</label>
+        <div class="control">
+            <input class="input" type="text" Required name="b" value="{{question.b}}">
+        </div>
+    </div>
+    <div class="field">
+        <label for="">option C</label>
+        <div class="control">
+            <input class="input" type="text" Required name="c" value="{{question.c}}">
+        </div>
+    </div>
+    <div class="field">
+        <label for="">option D</label>
+        <div class="control">
+            <input class="input" type="text" Required name="d" value="{{question.d}}">
+        </div>
+    </div>
+    <div class="field">
+        <label for="">anwser</label>
+        <div class="control">
+            <input class="input" type="text" Required name="course">
+        </div>
+    </div>
+</form> 
+<div class="field">
+    <div class="control">
+        <button form="question" class="button is-dark">Create Question</button>
+    </div>
+</div> 
+{% endif %} {% endcomment %}
+{% endblock %}

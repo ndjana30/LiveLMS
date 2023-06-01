@@ -1,0 +1,163 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel ="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS</title>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-start">
+            <a href="{% url 'starter' %}" class="navbar-item">
+              Home
+            </a>
+      
+            <a class="navbar-item">
+              Documentation
+            </a>
+      
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                More
+              </a>
+      
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  About
+                </a>
+                <a class="navbar-item">
+                  Jobs
+                </a>
+                <a class="navbar-item">
+                  Contact
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                  Report an issue
+                </a>
+              </div>
+            </div>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a href="{% url 'signup' %}" class="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+                <a href="{% url 'login' %}" class="button is-light">
+                  Log in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="home">
+        <div class="hero is-info is-medium">
+           <div class="hero-body has-text-centered">
+             <h1 class="title">Login to LMS</h1>
+    
+             <h2 class="subtitle">Learn at your own pace</h2>
+            </div>
+        </div>
+
+<i>
+    {% comment %} <div class="container">
+        <form id='registration' method='POST'>
+            {{ form.username|as_crispy_field }}
+            {{ form.password1|as_crispy_field }}
+            {{ form.password2|as_crispy_field }} 
+            {% csrf_token %}
+        </form>
+        <button class="button is-dark" type="submit" form='registration'>Create Account</button>
+        <legend>
+            Got already an account? <a href="{% url 'login' %}"> Login</a>
+        </legend>
+    </div> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+    <div class="hero-body has-text-centered is-dark">
+        <h1 class="title">SIGNUP</h1>
+    </div>
+
+    <form method="POST" id="registration">
+    <section class="section">
+        <div class="container">
+          <div class="columns is-multiline">
+           
+            <div class="column is-4">
+              <div class="box has-text-centered">
+                <span class="icon is-size-2 has-text-info"><i class="fa fa-clock"></i></span>
+                <h2 class="is-size-4 mt-4 mb-4 has-text-dark"> Enter Your Whole name as in Birth Certificate</h2>
+                <p>
+                    {{ form.username|as_crispy_field }} 
+                </p>
+                
+              </div>
+            </div>
+  
+            <div class="column is-4">
+              <div class="box has-text-centered">
+                <span class="icon is-size-2 has-text-info"><i class="fa fa-credit-card"></i></span>
+                <h2 class="is-size-4 mt-4 mb-4 has-text-dark"> Enter your password</h2>
+                <p>
+                    {{ form.password1|as_crispy_field }} 
+                </p>
+              </div>
+            </div>
+  
+  
+            <div class="column is-4">
+              <div class="box has-text-centered">
+                <span class="icon is-size-2 has-text-info"><i class="fa fa-book"></i></span>
+                <h2 class="is-size-4 mt-4 mb-4 has-text-dark"> Enter Again your password, To be Sure of It</h2>
+                
+                <p>
+                    {{ form.password2|as_crispy_field }} 
+                </p>
+              </div>
+            </div>
+            
+        
+        
+  
+           
+  
+          </div>
+        </div>
+      </section>
+      {% csrf_token %}
+    </form>
+    <center><button class="button is-info mt-5" type="submit" form='registration'>Create Account</button></center>
+
+</i>
+</body>
+</html>

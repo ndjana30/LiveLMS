@@ -1,0 +1,60 @@
+{% extends 'school/base.html' %}
+{% block content %}
+
+<form id="quiz" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+<center><h3 class="subtitle"> QUIZZ</h3></center>
+<ol type="1">
+     {% for q in qtns %}
+     <div class="hero ">
+     <li>
+<div class="quizz">        
+    <div class="field hero is-primary">
+         
+        <div class="control hero-body is-size-5">
+            <label>
+                {{q.sentence}}
+            </label> 
+        </div>
+    </div>
+    
+    
+            <input name="{{q.sentence}}"  type="radio" checked value="{{q.a}}">{{q.a}}
+            
+        
+   
+
+    
+            <input name="{{q.sentence}}"  type="radio" value="{{q.b}}">{{q.b}}
+           
+    
+    
+            <input name="{{q.sentence}}"  type="radio" value="{{q.c}}">{{q.c}}
+            
+    
+            <input name="{{q.sentence}}"  type="radio" value="{{q.d}}">{{q.d}}
+           
+           
+        </div>
+    </div>
+</div>
+</li>
+<div>
+    {% empty %}
+    <p> No questions yet</p>
+    {% endfor %}
+</ol>
+    <input id='timer' type='hidden' name='timer' value=''>
+    {% if qtns %}
+    <div class="field">
+        <div class="control">
+            <button form="quiz" class="button is-primary mt-3 mb-3 ml-3 mr-3">Submit</button>
+        </div>
+    </div>
+    {% endif %}
+</form>  
+
+
+
+{% endblock %}
+

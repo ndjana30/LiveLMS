@@ -1,0 +1,56 @@
+{% extends 'school/base.html' %}
+{% block content %}
+
+
+<form id="update-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="field">
+        <label for="">Name</label>
+        <div class="control">
+            <input class="input" type="text" Required name="name" value="{{lesson.name}}">
+        </div>
+    </div>
+
+     <div class="field">
+        <label for="">Description</label>
+        <div class="control">
+            <input class="input" Required name="description" value="{{lesson.description}}" type="message">
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="">file</label>
+        {% if lesson.file %}
+        <h3 class="subtitle"> {{ lesson.file }}</h3>
+        {% endif %}
+        <div class="control">
+            <input class="input" type="file"  name="file" 
+            >
+        </div>
+    </div>
+    <div class="field">
+        <label for="">image</label>
+        {% if lesson.image %}
+        <image src="{{ lesson.image.url }}">
+        {% endif %}
+        <div class="control">
+            <input class="input" type="file"  name="image">
+        </div>
+    </div>
+    <div class="field">
+        <label for="">video</label>
+        {% if lesson.video %}
+        <h3 class="subtitle"> {{ lesson.video }}</h3>
+        {% endif %}
+        <div class="control">
+            <input class="input" type="file"   name="video" >
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+            <button form="update-form" class="button is-dark">Update</button>
+        </div>
+    </div>
+</form> 
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'school/base.html' %}
+{% block content %}
+
+{% comment %} {% for c in courses %}
+<div class ="course">
+    <p>Course Name:<a href="{% url 'view_lessons' c.pk c.slug %}">{{c.name}}</a> </p>
+    {% comment %} <p>Subject: <a>{{subject.courses.subject}}</a> </p> {% endcomment %}
+    {% comment %} <p> Course Credit :{{c.credit}}</p>
+    <p>Instructor:{{c.Instructor}}</p> {% endcomment %} 
+<div class="container">
+    <div class="column is-10">
+        <div class="columns is-multiline">
+            {% for c in courses %}
+            <div 
+                class="column is-4">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="{{c.image.url}}" alt="Placeholder image">
+                        </figure>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <a href="{% url 'view_lessons' c.pk c.slug %}"> <p class="is-size-5">{{ c.name }}</p></a>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <p> credit:{{ c.credit }}</p>
+                             
+                        </div>
+                        <div class="content">
+                            <p>Instructor:{{ c.Instructor }}</p>
+                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%  empty %}
+   <p> No Courses here</p>
+</div>
+</div>
+</div>
+
+            {% endfor %}
+
+        
+
+
+    
+
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'school/base.html' %}
+{% block content %}
+
+{% comment %} {% for l in lessons %}
+
+<legend>{{l.pk}}</legend>{% if request.user.is_staff %}
+  <a href="{% url 'update' l.pk %}"><button> Update</button></a> <a href="{% url 'delete' l.pk %}"><button> Delete</button>
+{% endif %}
+<div class ="lesson">
+    <p>Lesson Name:{{l.name}} </p>
+    
+    {% if l.video %}
+    <p>video</p><br>
+    <video width="320" height="240" controls autoplay>
+        <source src="{{l.video.url}}" type="video/mp4">
+    </video>
+    {% else %}
+    <legend> no video(s) </legend>
+    {% endif %}
+    
+    {% if l.file %}
+    <p>File</p>
+    <a href="{{l.file.url}}">{{l.file}}</a>
+    {% else %}
+    <legend> no file(s)</legend>
+    {% endif %}
+
+    
+    
+
+    {% if request.user.is_staff %}
+       <a href="{% url 'create'  %}"><button> Create</button></a>
+       {% endif %}
+        
+
+    {% empty %}
+<p>No lessons yet</p>
+
+{% if request.user.is_staff %}
+<a href="{% url 'create'  %}"><button> Create</button></a>
+{% endif %}  
+
+</div>
+{% endfor %}
+
+
+
+
+ {% endcomment %}
+
+
+{% comment %} 
+ <div class="column is-10">
+  {% for l in lessons %}
+  {% if l.video %}
+    <p>video</p><br>
+    <video width="320" height="240" controls autoplay>
+        <source src="{{l.video.url}}" type="video/mp4">
+    </video>
+    {% else %}
+    <legend> no video(s) </legend>
+    {% endif %}
+    {% endfor %}
+ </div> {% endcomment %}
+
+<div class = "columns">
+ <div class="column is-2">
+    <aside class="menu">
+      
+      {% for l in lessons %}
+      <p> lesson {{l.pk}} </p><p class="menu-label">{{l.name}}</p>
+      <ul class="menu-list mr-5 pr-5 mgr-medium">
+          <li><a class="is-active">Video</a></li>
+          <li>
+            {% if l.video %}
+            <video width="800" height="600" controls autoplay>
+                <source src="{{l.video.url}}" type="video/mp4">
+            </video>
+            {% else %}
+            <legend> no video(s) </legend>
+            {% endif %}
+          
+          </li>
+          
+          
+      </ul>
+      {% endfor %}
+    </aside>
+  </div>
+
+  <div class="column is-10  pl-5">
+    <div class="columns is-multiline">
+        {% for l in lessons %}
+        <div 
+            class="column is-4">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        <img src="{{l.course.image.url}}" alt="Placeholder image">
+                    </figure>
+                </div>
+
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                             <p class="is-size-10">{{ l.name }}</p>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <p class="is-size-5 "> Info: {{ l.description }}</p>
+                    </div>
+                    <div class="content">
+                      {% if l.file %}
+                      <a href="{{l.file.url}}"><button class="button is-info mb-3"> Download lesson file</button></a>
+                      {% else %}
+                      <legend> no file(s)</legend>
+                      {% endif %}
+                      {% if l.video %}
+                      <a href="{{l.video.url}}"><button class="button is-info"> Download lesson video</button></a>
+                      {% else %}
+                      <legend> no video(s)</legend>
+                      {% endif %}
+                  
+                    </div>
+                   
+                  
+                </div>
+            </div>
+            
+        </div>
+        {%  empty %}
+<p> No Lesson(s) here</p>
+{% if request.user.is_staff %}
+<a href="{% url 'create'  %}"><button class="button is-info"> Create</button></a>
+{% endif %} 
+</div>
+</div>
+{% endfor %}
+<a href="{% url 'class_room' %}"><button class="button is-dark mt-3"> Join Live Classroom </button></a>
+<a href="{% url 'take_quiz' course.pk course.slug %}"><button class="button is-info ml-3 mr-3 mb-3 mt-3"> Take Quiz </button></a>
+<div class="column is-4">
+  {% if request.user.is_staff %}
+<a href="{% url 'create'  %}"><button class="button is-info"> Add lesson </button></a>
+{% endif %} 
+</div>
+</div>
+
+
+{% endblock %}

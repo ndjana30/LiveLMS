@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassRoom</title>
+    <link rel ="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+</head>
+<body>
+
+    <h3 id = "username" class="subtitle">{{request.user.username}}</h3>
+    <div id="video-container">
+        <div ><video allow="camera;microphone"   id="local-video" autoplay playsinline>
+        </video></div>
+        <button id='btn-join' class="button is-info is-dark">Join class room</button>
+        <button id="toggle-audio" class="button is-info">Audio Mute</button>
+        <button id="toggle-video" class="button is-info">Video Off</button>
+    </div>
+    <div>
+        <h3>CHAT</h3>
+        <div id="messages">
+            <ul id="message-list">
+
+            </ul>
+        </div>
+        <div>
+            <input id="msg"><button id="btn-send-msg" class="button is-info">send message</button>
+        </div>
+        <button class="button is-dark"> Share screen</button>
+    </div>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

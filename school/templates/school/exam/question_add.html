@@ -1,0 +1,74 @@
+{% extends 'school/base.html' %}
+{% block content %}
+
+<ol type="1">
+{% for q in qstns %}
+
+<li><p> {{q.sentence}}</p>
+<p>A) {{q.a}}</p>
+<p>B){{q.b}}</p>
+<p>C){{q.c}}</p>
+<p>D){{q.d}}</p>
+<p>Answer:{{q.ans}}</p>
+</li>
+{% empty %}
+<p>No questions yet, add below</p>
+{% endfor %}
+</ol>
+<form id="question" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="">question</label>
+        <div class="control">
+            <input class="input" type="text" Required name="sentence" >
+        </div>
+    <div class="field">
+        
+    </div>
+     <div class="field">
+        <label for="">Quiz</label>
+        <div class="control">
+            <input class="input" type="text" Required name="quiz" value="{{question.quiz}}" readonly >
+        </div>
+    </div>
+    <div class="field">
+        <label for="">option A</label>
+        <div class="control">
+            <input class="input" type="text" Required name="a" value="{{question.a}}">
+        </div>
+    </div>
+    <div class="field">
+        <label for="">option B</label>
+        <div class="control">
+            <input class="input" type="text" Required name="b" value="{{question.b}}">
+        </div>
+    </div>
+    <div class="field">
+        <label for="">option C</label>
+        <div class="control">
+            <input class="input" type="text" Required name="c" value="{{question.c}}">
+        </div>
+    </div>
+    <div class="field">
+        <label for="">option D</label>
+        <div class="control">
+            <input class="input" type="text" Required name="d" value="{{question.d}}">
+        </div>
+    </div>
+    <div class="field">
+        <label for="">anwser</label>
+        <div class="control">
+            <input class="input" type="text" Required name="ans">
+        </div>
+    </div>
+</form> 
+<div class="field">
+    <div class="control">
+        <button form="question" class="button is-dark">Create Question</button>
+    </div>
+</div> 
+<div class="field">
+    <div class="control">
+       <a href="{% url 'view_courses_as_teacher' %}"> <button class="button is-primary">Done</button></a>
+    </div>
+</div>
+{% endblock %}

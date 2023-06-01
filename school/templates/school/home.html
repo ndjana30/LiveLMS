@@ -1,0 +1,92 @@
+{% extends 'school/base.html' %}
+{% block content %}
+
+
+    
+
+<div class="columns">
+     <div class="column is-2">
+        <aside class="menu">
+            <p class="menu-label">Categories</p>
+            {% for s in subject %}
+            <ul class="menu-list">
+                <li><a class="is-active">Subject</a></li>
+                <li><a>{{s.name}}</a></li>
+            </ul>
+            {% endfor %}
+        </aside>
+    </div>
+
+
+
+    {% comment %} {% for s in subject %}
+    <div class="dropdown is-active">
+        <div class="dropdown-trigger">
+          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+            <span>{{s.name}}</span>
+            <span class="icon is-small">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="dropdown-content">
+            <a href="#" class="dropdown-item">
+              {{s.courses.name}}
+            </a>
+            <a href="#" class="dropdown-item">
+                {{s.courses.Instructor}}
+              </a>
+            
+            <hr class="dropdown-divider">
+            <a href="#" class="dropdown-item">
+              {{s.courses.credits}}
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% endcomment %}
+
+      
+
+    <div class="column is-10">
+        <div class="columns is-multiline">
+            {% for s in subject %}
+            <div 
+                class="column is-4">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="{{s.image.url}}" alt="Placeholder image">
+                        </figure>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <a href="{% url 'view_courses' s.pk   %}"> <p class="is-size-5">{{ s.name }}</p></a>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <p>{{ s.department }}</p>
+                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%  empty %}
+   <p> No subjects here</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+    
+    
+   
+
+
+{% endblock %}
